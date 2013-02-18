@@ -36,8 +36,11 @@ n = size(M,1);
 % monte carlo
 R = [1 3 5];
 T = [];
+errors = [];
 for r = R
     [E,t] = montecarlo(M,beta,r,PR);
+    E = [ones(4,1)*r,E];
+    errors=[errors;E];
     T = [T;r t];
 end
 save('results_q2.mat','pwr_T','T','E');

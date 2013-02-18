@@ -4,11 +4,6 @@ len = size(G,1);
 
 % First calculate out-degrees
 deg = zeros(100);
-
-for i = 1:len
-    deg(G(i,1)) = deg(G(i,1))+1;
-end
-
 % convert graph to matrix
 M = zeros(100,100);
 
@@ -16,9 +11,17 @@ M = zeros(100,100);
 for i = 1:len
     source = G(i,1);
     target = G(i,2);
+    deg(source) = deg(source)+1;
+    M(target,source) = M(target,source)+1;
+end
+
+
+for i = 1:len
+    source = G(i,1);
+    target = G(i,2);
     m_ji = 0;
     if deg(source) > 0
-        m_ji = 1/deg(source);
+        m_ji = M(target,source)/deg(source);
     end
     M(target,source) = m_ji;
 end

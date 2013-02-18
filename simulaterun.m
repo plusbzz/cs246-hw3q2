@@ -10,7 +10,7 @@ function visits = simulaterun( M,start,beta )
             break
         end
         % get new node to move to
-        nextnodes = M(current,:);
+        nextnodes = M(:,current);
         nextnodes = find(nextnodes > 0); % find candidates
         current = nextnodes(ceil(length(nextnodes)*rand()));
     end

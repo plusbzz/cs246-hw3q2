@@ -19,7 +19,7 @@ function [ E, T ] = montecarlo( M,beta,R,PR )
     for k = Ks
         %top-k
         kidx = idx(1:k);
-        E = [E;k sum(abs(PRmc(kidx) - PRactual(kidx)))/k];
+        E = [E;k sum(abs(PR(kidx) - PRactual(kidx)))/k];
     end
 end
 

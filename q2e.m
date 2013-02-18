@@ -6,7 +6,7 @@ len = size(G,1);
 deg = zeros(100);
 
 for i = 1:len
-    deg(g(i,1)) = deg(g(i,1))+1;
+    deg(G(i,1)) = deg(G(i,1))+1;
 end
 
 % convert graph to matrix
@@ -14,8 +14,8 @@ M = zeros(100,100);
 
 
 for i = 1:len
-    source = g(i,1);
-    target = g(i,2);
+    source = G(i,1);
+    target = G(i,2);
     m_ji = 0;
     if deg(source) > 0
         m_ji = 1/deg(source);
@@ -40,4 +40,4 @@ for r = R
     [E,t] = montecarlo(M,beta,r,PR);
     T = [T;r t];
 end
-
+save('results_q2.mat','pwr_T','T','E');

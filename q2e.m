@@ -3,7 +3,7 @@ len = size(G,1);
 
 
 % First calculate out-degrees
-deg = zeros(100);
+deg = zeros(100,1);
 % convert graph to matrix
 M = zeros(100,100);
 
@@ -11,20 +11,15 @@ M = zeros(100,100);
 for i = 1:len
     source = G(i,1);
     target = G(i,2);
-    deg(source) = deg(source)+1;
+    deg(source,1) = deg(source,1)+1;
     M(target,source) = M(target,source)+1;
 end
 
 
-for i = 1:len
-    source = G(i,1);
-    target = G(i,2);
-    m_ji = 0;
-    if deg(source) > 0
-        m_ji = M(target,source)/deg(source);
-    end
-    M(target,source) = m_ji;
+for source = 1:100
+    M(:,source) = M(:,source)/deg(source,1);
 end
+
 
 % Now that M has been loaded, run the two algorithms
 % power iteration
